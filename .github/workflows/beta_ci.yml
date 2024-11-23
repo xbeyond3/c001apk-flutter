@@ -180,38 +180,3 @@ jobs:
           name: c001apk-ios.ipa
           path: |
             build/app-*.ipa
-
-  MacOS:
-    name: Build CI (MacOS)
-    needs: update_version
-    runs-on: macos-13
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-
-      - name: 安装Flutter
-        if: steps.cache-flutter.outputs.cache-hit != 'true'
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          architecture: x64
-
-      - name: 更新版本号
-        id: version
-        run: |
-          # 更新pubspec.yaml文件中的版本号
-          sed -i "s/version: .*+/version: ${{ needs.update_version.outputs.new_version }}+/g" pubspec.yaml
-
-      - name: flutter build pkg
-        run: |
-          flutter build ios --release --no-codesign 
-          ln -sf ./build/ios/iphoneos Payload
-          zip -r9 app.ipa Payload/runner.app
-      - run: flutter pub get
-      - run: flutter build macos --release
-      - uses: actions/upload-artifact@v4
-        with:
-          name: macos-build.zip
-          path: build/macos/Build/Products/Release/c001apk.app

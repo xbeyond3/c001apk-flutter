@@ -87,8 +87,7 @@ jobs:
         if: steps.cache-flutter.outputs.cache-hit != 'true'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
-          channel: stable
+          flutter-version: '3.22.0'
 
       - name: 下载项目依赖
         run: flutter pub get
@@ -144,8 +143,7 @@ jobs:
         uses: subosito/flutter-action@v2.10.0
         with:
           cache: true
-          flutter-version-file: pubspec.yaml
-          channel: stable
+          flutter-version: '3.22.0'
 
       - name: 更新版本号
         id: version

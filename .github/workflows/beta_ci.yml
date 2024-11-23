@@ -193,10 +193,10 @@ jobs:
 
       - name: 安装Flutter
         if: steps.cache-flutter.outputs.cache-hit != 'true'
-        - uses: subosito/flutter-action@v2
-          with:
-            channel: 'stable'
-            architecture: x64
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
 
       - name: 更新版本号
         id: version

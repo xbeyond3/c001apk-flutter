@@ -89,7 +89,7 @@ jobs:
         with:
           cache: true
           channel: any
-          flutter-version: 3.16.5
+          flutter-version: 3.24.x
 
       - name: 下载项目依赖
         run: flutter pub get
@@ -146,7 +146,7 @@ jobs:
         with:
           cache: true
           channel: any
-          flutter-version: 3.16.5 
+          flutter-version: 3.24.x
 
       - name: 更新版本号
         id: version
